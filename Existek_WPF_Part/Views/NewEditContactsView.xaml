@@ -1,0 +1,40 @@
+﻿<Window x:Class="Existek_WPF_Part.Views.NewEditContactsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Existek_WPF_Part.Views"
+        mc:Ignorable="d"
+        Title="NewEditContactsView" Height="200" Width="320">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="New Contact" FontSize="24"/>
+            <TextBlock Text="Contact type" Grid.Row="1" Grid.Column="0"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CurrentContact.ContactType}">
+                <ComboBoxItem Content="Phone" IsSelected="True"/>
+                <ComboBoxItem Content="Email"/>
+            </ComboBox>
+            <TextBlock Text="Contact " Grid.Row="2" Grid.Column="0"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrentContact.ContactTxt}" 
+                 Width="Auto" Margin="5" />
+            <Button Grid.Row="3" Grid.Column="1" Content="Save contact" Background="DarkBlue" 
+                Foreground="NavajoWhite" Width="120" Margin="5" Command="{Binding SaveContactCommand}"
+                CommandParameter="{Binding CurrentContact}"/>
+        </Grid>
+        <Button VerticalAlignment="Top" Height="20" Width="20" ToolTip="Cancel" 
+                Background="Transparent" BorderThickness="0" Command="{Binding CancelContactCommand}"
+                CommandParameter="{Binding ElementName=NewEditContactsView}">
+            <Image Source="../Resources/cross.png" Margin="3"/>
+        </Button>
+    </StackPanel>
+</Window>

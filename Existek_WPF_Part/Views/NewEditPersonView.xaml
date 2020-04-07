@@ -1,0 +1,113 @@
+﻿<Window x:Class="Existek_WPF_Part.Views.NewEditPersonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Existek_WPF_Part.Views"
+        mc:Ignorable="d"
+        Title="New/Edit Person" Height="330" Width="500">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="User data" Margin="3" FontSize="28" />
+            <TextBlock Text="Personal:"  Grid.Row="1" Grid.Column="0"/>
+            <TextBlock Text="Greeting" Grid.Row="2" Grid.Column="0"/>
+            <!--<TextBox Text="{Binding GreetingTxt}"  Grid.Row="2" Grid.Column="1"/>-->
+            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Greetings}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Item.Txt}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="FirstName"  Grid.Row="3" Grid.Column="0"/>
+            <TextBox Text="{Binding FName}" Grid.Row="3" Grid.Column="1"/>
+            <TextBlock Text="Last Name" Grid.Row="4" Grid.Column="0"/>
+            <TextBox Text="{Binding LName}" Grid.Row="4" Grid.Column="1"/>
+            <TextBlock Text="Country" Grid.Row="2" Grid.Column="2"/>
+            <!--<TextBox Text="{Binding Country}" Grid.Row="2" Grid.Column="3"/>-->
+            <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Countries}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Item.Txt}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="City" Grid.Row="3" Grid.Column="2"/>
+            <TextBox Text="{Binding City}" Grid.Row="3" Grid.Column="3"/>
+            <TextBlock Text="Street" Grid.Row="4" Grid.Column="2"/>
+            <TextBox Text="{Binding Street}" Grid.Row="4" Grid.Column="3"/>
+            <TextBlock Text="Postal code" Grid.Row="5" Grid.Column="2"/>
+            <TextBox Text="{Binding Zip}" Grid.Row="5" Grid.Column="3"/>
+            <TextBlock Text="Work" FontWeight="Bold" Grid.Row="5" Grid.Column="0"/>
+            <TextBlock Text="Company" Grid.Row="6" Grid.Column="0"/>
+            <TextBox Text="{Binding Company}" Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Text="Title" Grid.Row="7" Grid.Column="0"/>
+            <TextBox Text="{Binding Title}" Grid.Row="7" Grid.Column="1"/>
+            <TextBlock Text="Contacts" FontWeight="Bold"  Grid.Row="8" Grid.Column="0"/>
+            <ToolBar Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+                <Button ToolTip="New Contact" Command="{Binding NewContactCommand}">
+                    <Image Source="../Resources/view_new.png" Margin="3"/>
+                </Button>
+                <Button ToolTip="Edit Contact" Command="{Binding EditContactCommand}">
+                    <Image Source="../Resources/view_edit.png" Margin="3"/>
+                </Button>
+                <Separator/>
+                <Button ToolTip="Remove Contact" Command="{Binding RemoveContactCommand}">
+                    <Image Source="../Resources/cross.png" Margin="3"/>
+                </Button>
+            </ToolBar>
+            <DataGrid ItemsSource="{Binding Item.CustomerContacts}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ContactType}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ContactTxt}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock Text="Email" Grid.Row="10" Grid.Column="0"/>
+            <TextBox Text="{Binding Title}" Grid.Row="10" Grid.Column="1"/>
+            <TextBlock Text="Phone" Grid.Row="11" Grid.Column="0"/>
+            <TextBox Text="{Binding Title}" Grid.Row="11" Grid.Column="1"/>
+            <Button Content="Save" Foreground="NavajoWhite" Background="DarkBlue" Command="{Binding SaveCustomerCommand}" 
+                CommandParameter="{Binding CurrentCustomer}" Grid.Row="12" Grid.Column="3"
+                Width="100"/>
+        </Grid>
+        <Button VerticalAlignment="Top" Height="20" Width="20" ToolTip="Cancel" 
+                Background="Transparent" BorderThickness="0" Command="{Binding CancelCustomerCommand}"
+                 CommandParameter="{Binding ElementName=NewEditPersonView}">
+            <Image Source="../Resources/cross.png" Margin="3"/>
+        </Button>
+    </StackPanel>
+
+</Window>
